@@ -46,3 +46,4 @@ You can deploy this repository directly to:
 - **Netlify**: Connect your GitHub repository or drag-and-drop the folder.
 - **Vercel**: Run `vercel` or link via dashboard.
 - **GitHub Pages**: Push to repository and enable GitHub Pages under *Settings > Pages*.
+link : https://siddhesh-portfolio-07.netlify.app/
