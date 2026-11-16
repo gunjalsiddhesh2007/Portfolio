@@ -1,15 +1,15 @@
 import * as THREE from 'three';
 
 // ============================================================================
-// 1. Scene, Camera & Renderer Setup (Atmospheric Gunmetal Grey & Silver)
+// 1. Scene, Camera & Renderer Setup (Grey #808080 Background & Fog)
 // ============================================================================
 const canvas = document.querySelector('#bg');
 const scene = new THREE.Scene();
 
-// Matte gunmetal grey scene background & atmospheric fog (NO pitch black)
-const gunmetalGrey = 0x181b22;
-scene.background = new THREE.Color(gunmetalGrey);
-scene.fog = new THREE.FogExp2(gunmetalGrey, 0.012);
+// Authentic #808080 Grey scene background & atmospheric fog
+const greyColor = 0x808080;
+scene.background = new THREE.Color(greyColor);
+scene.fog = new THREE.FogExp2(greyColor, 0.012);
 
 const camera = new THREE.PerspectiveCamera(
   70,
@@ -34,41 +34,41 @@ camera.position.setX(-2);
 camera.position.setY(0);
 
 // ============================================================================
-// 2. Texture Loader & Background Space
+// 2. Texture Loader
 // ============================================================================
 const textureLoader = new THREE.TextureLoader();
 
 // ============================================================================
-// 3. Lighting (Polished Silver Highlights with Delicate Crimson Rim Light)
+// 3. Lighting (Silver #C0C0C0 Highlights with Delicate Crimson #ef4444 Rim Light)
 // ============================================================================
-// Cool silver-slate ambient illumination
-const ambientLight = new THREE.AmbientLight(0x9aa5b4, 1.15);
+// Cool silver ambient illumination
+const ambientLight = new THREE.AmbientLight(0xC0C0C0, 1.15);
 scene.add(ambientLight);
 
-// Primary Silver Specular Point Light
-const silverLight = new THREE.PointLight(0xe2e8f0, 3.0, 130);
+// Primary Silver #C0C0C0 Specular Point Light
+const silverLight = new THREE.PointLight(0xC0C0C0, 3.0, 130);
 silverLight.position.set(12, 10, 20);
 scene.add(silverLight);
 
-// Secondary Subtle Crimson Point Light (Edge glow - kept tasteful)
+// Secondary Subtle Crimson Point Light (Edge glow - kept as is)
 const crimsonLight = new THREE.PointLight(0xef4444, 1.8, 110);
 crimsonLight.position.set(-16, -10, 15);
 scene.add(crimsonLight);
 
 // Directional metallic fill light
-const dirLight = new THREE.DirectionalLight(0xd8e0eb, 0.9);
+const dirLight = new THREE.DirectionalLight(0xC0C0C0, 0.9);
 dirLight.position.set(0, 20, 25);
 scene.add(dirLight);
 
 // ============================================================================
-// 4. 3D Elements (Brushed Silver, Titanium & Subtle Red Accent)
+// 4. 3D Elements (Silver #C0C0C0 & Crimson #ef4444 Accents)
 // ============================================================================
 
-// --- A. Torus Knot (Brushed Silver Steel Core) ---
+// --- A. Torus Knot (Silver #C0C0C0 Core) ---
 const torusGeo = new THREE.TorusKnotGeometry(8, 2.2, 120, 24);
 const torusMat = new THREE.MeshStandardMaterial({
-  color: 0xc4cdd8, // Brushed Silver
-  roughness: 0.25,
+  color: 0xC0C0C0, // Silver #C0C0C0
+  roughness: 0.22,
   metalness: 0.88,
   wireframe: false,
 });
@@ -79,25 +79,25 @@ scene.add(torus);
 // --- B. Subtle Crimson Wireframe Ring ---
 const ringGeo = new THREE.TorusGeometry(14, 0.28, 16, 100);
 const ringMat = new THREE.MeshBasicMaterial({
-  color: 0xef4444, // Refined Crimson Red accent
+  color: 0xef4444, // Red accent kept intact
   wireframe: true,
   transparent: true,
-  opacity: 0.4,
+  opacity: 0.45,
 });
 const ring = new THREE.Mesh(ringGeo, ringMat);
 ring.position.set(0, 0, -5);
 scene.add(ring);
 
-// --- C. Starfield Particles (Silver Dust, Platinum & Sparse Ruby) ---
+// --- C. Starfield Particles (Silver #C0C0C0 Dust & Sparse Ruby) ---
 const starGeometry = new THREE.BufferGeometry();
 const starCount = 380;
 const starCoords = new Float32Array(starCount * 3);
 const starColors = new Float32Array(starCount * 3);
 
 const colorPalette = [
-  new THREE.Color(0xe2e8f0), // Brushed Silver
-  new THREE.Color(0xcbd5e1), // Platinum
-  new THREE.Color(0x8f9ba8), // Slate Grey
+  new THREE.Color(0xC0C0C0), // Silver #C0C0C0
+  new THREE.Color(0xdadada), // Soft Silver
+  new THREE.Color(0x808080), // Grey #808080
   new THREE.Color(0xf87171), // Occasional soft red star
 ];
 
@@ -137,7 +137,7 @@ const moon = new THREE.Mesh(
   new THREE.MeshStandardMaterial({
     map: moonTexture,
     normalMap: normalTexture,
-    roughness: 0.78,
+    roughness: 0.75,
     metalness: 0.15,
   })
 );
@@ -145,7 +145,7 @@ const moon = new THREE.Mesh(
 moon.position.set(-12, 2, 25);
 scene.add(moon);
 
-// --- E. Siddhesh 3D Rotating Avatar Cube ---
+// --- E. Siddhesh 3D Rotating Avatar Cube (Updated with new image) ---
 const siddTexture = textureLoader.load('siddhesh.jpg');
 const cubeGeo = new THREE.BoxGeometry(3.6, 3.6, 3.6);
 
@@ -159,13 +159,13 @@ const avatarCube = new THREE.Mesh(cubeGeo, cubeMat);
 avatarCube.position.set(4, -2, -3);
 scene.add(avatarCube);
 
-// Silver wireframe halo around avatar cube
+// Silver #C0C0C0 wireframe halo around avatar cube
 const cubeWireGeo = new THREE.BoxGeometry(3.8, 3.8, 3.8);
 const cubeWireMat = new THREE.MeshBasicMaterial({
-  color: 0xcbd5e1, // Silver
+  color: 0xC0C0C0, // Silver #C0C0C0
   wireframe: true,
   transparent: true,
-  opacity: 0.4,
+  opacity: 0.45,
 });
 const cubeWire = new THREE.Mesh(cubeWireGeo, cubeWireMat);
 avatarCube.add(cubeWire);
