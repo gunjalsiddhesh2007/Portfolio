@@ -16,10 +16,11 @@
   const canvas = document.querySelector('#bg');
   if (!canvas) return;
 
-  // Scene setup with transparent alpha for seamless CSS background blending
+  // Scene setup
   const scene = new THREE.Scene();
-  scene.background = null;
-  scene.fog = new THREE.FogExp2(0x0d0f15, 0.014);
+  const greyColor = 0x222630; // Deep titanium grey for depth
+  scene.background = new THREE.Color(greyColor);
+  scene.fog = new THREE.FogExp2(greyColor, 0.015);
 
   const camera = new THREE.PerspectiveCamera(
     70,
@@ -33,8 +34,6 @@
     antialias: true,
     alpha: true,
   });
-
-  renderer.setClearColor(0x000000, 0);
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
