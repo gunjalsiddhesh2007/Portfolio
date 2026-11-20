@@ -2,15 +2,6 @@
   "name": "siddhesh-gunjal-portfolio",
   "version": "1.0.0",
   "description": "3D Interactive Web Developer Portfolio for Siddhesh Dinesh Gunjal",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^5.0.0"
-  },
-  "dependencies": {
-    "three": "^0.160.0"
-  }
+  "main": "index.html",
+  "author": "Siddhesh Dinesh Gunjal"
 }
